@@ -3,10 +3,11 @@ import java.util.Scanner;
 
 public class akademi {
     static Scanner in;
-    static int [] arr;
-    static int n;
+    static String [] arr;
+    static String [] matkul;
+    static int [][] nilai;
+    static int n,k;
     public static void main(String[] args) {
-        arr = new int[n];
         in = new Scanner(System.in);
         int pilihan = 0;
         while (pilihan != 7){
@@ -21,6 +22,7 @@ public class akademi {
             pilihan = in.nextInt();
             switch(pilihan){
                 case 1:
+                dataMahasiswa();
                 break;
                 case 2:
                 mataKuliah();
@@ -50,6 +52,16 @@ public class akademi {
     static void peringkatMhs() {
     }
     static void nilaiPerMatkul() {
+        for (int a = 0; a < k;a++){
+            System.out.print(matkul[a]+"\t");
+        }
+        System.out.println("");
+        for (int i = 0; i< n;i++){
+            for (int j = 0; j<k;j++){
+                System.out.print(nilai[i][j] + "\t");
+            }
+            System.out.println("");
+        }
     }
     static void cetakKHS() {
     }
@@ -57,6 +69,16 @@ public class akademi {
     }
     static void mataKuliah() {
     }
-    static void dataMahasiswa() {
+    static String[] dataMahasiswa() {
+        System.out.println("Masukkan banyaknya siswa");
+        n = in.nextInt();
+        in.nextLine();
+        arr = new String[n];
+        System.out.println("Masukkan nama mahasiswa");
+        for (int i = 0; i< arr.length;i++){
+            System.out.print(i+1+" ");
+            arr[i] = in.nextLine();
+        }
+        return arr;
     }
 }
