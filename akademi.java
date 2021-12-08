@@ -61,7 +61,7 @@ public class akademi {
             for (int j = 0;j<jumlahMatkul;j++){
                 tampungNilai += nilai[i][j];
             }
-            tampungNilaiAVG = tampungNilai/jumlahMhs;
+            tampungNilaiAVG = tampungNilai/jumlahMatkul;
             ipk[i] = tampungNilaiAVG;
             tampungNilai = 0;
         }
