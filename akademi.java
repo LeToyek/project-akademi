@@ -7,7 +7,7 @@ public class akademi {
     static String [] nim;
     static String [] matkul;
     static int [][] nilai;
-    static int jumlahMhs,k,jumlahMatkul;
+    static int jumlahMhs,jumlahMatkul;
     public static void main(String[] args) {
         in = new Scanner(System.in);
         int pilihan = 0;
@@ -51,38 +51,60 @@ public class akademi {
         }
     }
     static void peringkatMhs() {
+        double []ipk = new double[jumlahMhs];
+        double temp = 0;
+        String tempNim = "";
+        String tempNama = "";
+        double tampungNilai = 0;
+        double tampungNilaiAVG = 0;
+        for (int i = 0;i <jumlahMhs;i++){
+            for (int j = 0;j<jumlahMatkul;j++){
+                tampungNilai += nilai[i][j];
+            }
+            tampungNilaiAVG = tampungNilai/jumlahMhs;
+            ipk[i] = tampungNilaiAVG;
+            tampungNilai = 0;
+        }
+        for (int i = 0; i<jumlahMhs;i++){
+            for (int j = 1; j< (jumlahMatkul-i); j++){
+                if (ipk[j-1] < ipk[j]){
+                    temp = ipk[j-1];
+                    ipk[j-1] = ipk[j];
+                    ipk[j] = temp;
+                    tempNama = nama[j-1];
+                    nama[j-1] = nama[j];
+                    nama[j] = tempNama;
+                    tempNim = nim[j-1];
+                    nim[j-1] = nim[j];
+                    nim[j] = tempNim;
+                }
+            }
+        }
+        System.out.println("Daftar peringkat mahasiswa\t:");
+        for (int i = 0; i<jumlahMhs;i++){
+            System.out.println("No" + "Nama" + "\t" + "NIM" + "\t" + "Nilai");
+            System.out.println(i+1 + " "+ nama[i] + "\t" + nim[i] + "\t" + ipk[i]);
+        }
     }
     static void nilaiPerMatkul() {
-        for (int a = 0; a < k;a++){
-            System.out.print(matkul[a]+"\t");
-        }
-        System.out.println("");
-        for (int i = 0; i< n;i++){
-            for (int j = 0; j<k;j++){
-                System.out.print(nilai[i][j] + "\t");
-            }
-            System.out.println("");
-        }
+        
     }
     static void cetakKHS() {
     }
     static void kelolaNilai() {
     }
     static void mataKuliah() {
-        Scanner in = new Scanner(System.in);
         System.out.print("Masukkan Jumlah Mata Kuliah: ");
         jumlahMatkul = in.nextInt();
         in.nextLine();
-        matkul = new String[n];
-        System.out.println("Mata Kuliah");
-        for (int i = 0; i < matkul.length ; i++){
+        matkul = new String[jumlahMatkul];
+        System.out.println("Nama Mata Kuliah");
+        for (int i = 0; i < jumlahMatkul; i++){
             System.out.print(i+1+" ");
             matkul[i] = in.nextLine();
         }
-        return matkul;
     }
-    static String[] dataMahasiswa() {
-        Scanner in = new Scanner(System.in);
+    static void dataMahasiswa() {
         System.out.print("Masukkan Jumlah Mahasiswa: ");
         jumlahMhs = in.nextInt();
         in.nextLine();
@@ -95,6 +117,5 @@ public class akademi {
             System.out.print("  NIM\t:");
             nim[i] = in.nextLine();
         }
-        return nama;
     }
 }
