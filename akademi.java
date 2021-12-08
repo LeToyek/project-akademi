@@ -3,10 +3,11 @@ import java.util.Scanner;
 
 public class akademi {
     static Scanner in;
-    static String [] namaMahasiswa;
+    static String [] nama;
+    static String [] nim;
     static String [] matkul;
     static int [][] nilai;
-    static int n,k;
+    static int n,k,jumlahMatkul;
     public static void main(String[] args) {
         in = new Scanner(System.in);
         int pilihan = 0;
@@ -68,17 +69,32 @@ public class akademi {
     static void kelolaNilai() {
     }
     static void mataKuliah() {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Masukkan Jumlah Mata Kuliah: ");
+        jumlahMatkul = in.nextInt();
+        in.nextLine();
+        matkul = new String[n];
+        System.out.println("Mata Kuliah");
+        for (int i = 0; i < matkul.length ; i++){
+            System.out.print(i+1+" ");
+            matkul[i] = in.nextLine();
+        }
+        return matkul;
     }
     static String[] dataMahasiswa() {
-        System.out.println("Masukkan banyaknya siswa");
+        Scanner in = new Scanner(System.in);
+        System.out.print("Masukkan Jumlah Mahasiswa: ");
         n = in.nextInt();
         in.nextLine();
-        namaMahasiswa = new String[n];
-        System.out.println("Masukkan nama mahasiswa");
-        for (int i = 0; i< namaMahasiswa.length;i++){
-            System.out.print(i+1+" ");
-            namaMahasiswa[i] = in.nextLine();
+        nama = new String[n];
+        nim = new String[n];
+        System.out.println("Masukkan Data Mahasiswa");
+        for (int i = 0; i < nama.length ; i++){
+            System.out.print(i+1+" Nama\t:");
+            nama[i] = in.nextLine();
+            System.out.print("  NIM\t:");
+            nim[i] = in.nextLine();
         }
-        return namaMahasiswa;
+        return nama;
     }
 }
