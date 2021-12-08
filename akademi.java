@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class akademi {
     static Scanner in;
-    static String [] arr;
+    static String [] namaMahasiswa;
     static String [] matkul;
     static int [][] nilai;
     static int n,k;
@@ -73,12 +73,12 @@ public class akademi {
         System.out.println("Masukkan banyaknya siswa");
         n = in.nextInt();
         in.nextLine();
-        arr = new String[n];
+        namaMahasiswa = new String[n];
         System.out.println("Masukkan nama mahasiswa");
-        for (int i = 0; i< arr.length;i++){
+        for (int i = 0; i< namaMahasiswa.length;i++){
             System.out.print(i+1+" ");
-            arr[i] = in.nextLine();
+            namaMahasiswa[i] = in.nextLine();
         }
-        return arr;
+        return namaMahasiswa;
     }
 }
