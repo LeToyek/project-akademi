@@ -7,7 +7,7 @@ public class akademi {
     static String [] nim;
     static String [] matkul;
     static int [][] nilai;
-    static int n,k,jumlahMatkul;
+    static int jumlahMhs,k,jumlahMatkul;
     public static void main(String[] args) {
         in = new Scanner(System.in);
         int pilihan = 0;
@@ -84,10 +84,10 @@ public class akademi {
     static String[] dataMahasiswa() {
         Scanner in = new Scanner(System.in);
         System.out.print("Masukkan Jumlah Mahasiswa: ");
-        n = in.nextInt();
+        jumlahMhs = in.nextInt();
         in.nextLine();
-        nama = new String[n];
-        nim = new String[n];
+        nama = new String[jumlahMhs];
+        nim = new String[jumlahMhs];
         System.out.println("Masukkan Data Mahasiswa");
         for (int i = 0; i < nama.length ; i++){
             System.out.print(i+1+" Nama\t:");
