@@ -1,13 +1,12 @@
 import java.util.Scanner;
 
-import javax.sound.sampled.SourceDataLine;
 
 public class akademi {
     static Scanner in;
+    static int [] arr;
+    static int n;
     public static void main(String[] args) {
-        showMenu();
-    }
-    static void showMenu(){
+        arr = new int[n];
         in = new Scanner(System.in);
         int pilihan = 0;
         while (pilihan != 7){
@@ -22,7 +21,6 @@ public class akademi {
             pilihan = in.nextInt();
             switch(pilihan){
                 case 1:
-                dataMahasiswa();
                 break;
                 case 2:
                 mataKuliah();
