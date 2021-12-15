@@ -143,6 +143,8 @@ public class akademi {
                 case 2:
                 showMatkul();
                 break;
+                case 3:
+                break;
                 default:
                 System.out.println("pilihan anda tidak ada dalam daftar menu");
             }
@@ -185,6 +187,8 @@ public class akademi {
                 case 2:
                 showDataMahasiswa();
                 break;
+                case 3:
+                break;
                 default:
                 System.out.println("pilihan anda tidak ada dalam daftar menu");
             }
@@ -192,14 +196,15 @@ public class akademi {
     }
     private static void showDataMahasiswa() {
         if(jumlahMhs != 0){
-            System.out.println("Nama\t\t"+"NIM");
+            System.out.println("------Data Nama Mahasiswa------");
+            System.out.println("===============================");
+            System.out.println("No\t"+"Nama\t\t"+"NIM");
             for(int i = 0; i<jumlahMhs;i++){
-                System.out.println(nama[i] +"\t\t" + nim[i]);
+                System.out.println(i+1 + "\t" + nama[i] +"\t\t" + nim[i]);
             }
         }else{
             System.out.println("tidak ada mahasiswa dalam daftar");
         }
-        
     }
     private static void inputDataMahasiswa() {
         System.out.print("Masukkan Jumlah Mahasiswa: ");
