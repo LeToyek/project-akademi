@@ -83,16 +83,16 @@ public class akademi {
                 }
             }
             System.out.println("Daftar peringkat mahasiswa\t:");
+            System.out.println("Peringkat\tNama\tNIM\tNilai");
             for (int i = 0; i<jumlahMhs;i++){
-                System.out.println("No" + "Nama" + "\t" + "NIM" + "\t" + "Nilai");
-                System.out.println(i+1 + " "+ nama[i] + "\t" + nim[i] + "\t" + ipk[i]);
+                System.out.println(i+1 + "\t\t "+ nama[i] + "\t" + nim[i] + "\t" + ipk[i]);
             }
         }else if (jumlahMatkul == 0){
             System.out.println("tidak ada matkul dalam daftar"
             +"\nharap input matkul terlebih dahulu");
         }else if (jumlahMhs == 0) {
             System.out.println("tidak ada mahasiswa dalam daftar"
-                    + "\nharap input matkul terlebih dahulu");
+                    + "\nharap input mahasiswa terlebih dahulu");
         }else{
             System.out.println("nilai belum diinput"+ "\nharap input nilai terlebih dahulu");
         }
@@ -101,14 +101,14 @@ public class akademi {
         if (jumlahMhs !=0 && jumlahMatkul != 0 && nilai != null){
             nilaiPerMatkul = new double[jumlahMatkul];
             double tampungNilaiPerMatkul = 0;
-            double avgTampungNilai = 0;
-            for(int i = 0; i < jumlahMhs; i++){
-                for(int j = 0; j< jumlahMatkul;j++){
+            double avgTampungNilai = 0;  
+            for(int i = 0; i < jumlahMatkul; i++){
+                for(int j = 0; j< jumlahMhs;j++){
                     tampungNilaiPerMatkul += nilai[j][i];
                 }
                 avgTampungNilai = tampungNilaiPerMatkul/jumlahMhs;
                 nilaiPerMatkul [i] = avgTampungNilai;
-                avgTampungNilai = 0;
+                tampungNilaiPerMatkul = 0;
             }
             for (int i = 0; i<jumlahMhs;i++){
                 System.out.println(matkul[i]+"\t\t="+nilaiPerMatkul[i]);
