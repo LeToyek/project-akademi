@@ -113,7 +113,7 @@ public class akademi {
             System.out.println("---------------Nilai Per Matkul---------------");
             System.out.printf("%-30s | %-5s |\n","Mata Kuliah","Nilai");
             System.out.println("----------------------------------------");
-            for (int i = 0; i<jumlahMhs;i++){
+            for (int i = 0; i<jumlahMatkul;i++){
                 System.out.printf("%-30s | %-5.2f |\n",matkul[i],nilaiPerMatkul[i]);
             }
         }else if (jumlahMatkul == 0){
@@ -129,7 +129,12 @@ public class akademi {
     static void cetakKHS() {
     }
     static void kelolaNilai() {
-        
+        nilai = new int[jumlahMhs][jumlahMatkul];
+        for(int i = 0; i< jumlahMhs;i++){
+            for(int j = 0; j< jumlahMatkul;j++){
+                nilai[i][j] = in.nextInt();
+            }
+        }
     }
     static void showMenuMataKuliah() {
         int choice = 0;
@@ -151,6 +156,7 @@ public class akademi {
                 break;
                 default:
                 System.out.println("pilihan anda tidak ada dalam daftar menu");
+                break;
             }
         }
     }
@@ -196,6 +202,7 @@ public class akademi {
                 break;
                 default:
                 System.out.println("pilihan anda tidak ada dalam daftar menu");
+                break;
             }
         }
     }
@@ -219,7 +226,7 @@ public class akademi {
         nama = new String[jumlahMhs];
         nim = new String[jumlahMhs];
         System.out.println("Masukkan Data Mahasiswa");
-        for (int i = 0; i < nama.length ; i++){
+        for (int i = 0; i < jumlahMhs ; i++){
             System.out.print(i+1+" Nama\t:");
             nama[i] = in.nextLine();
             System.out.print("  NIM\t:");
