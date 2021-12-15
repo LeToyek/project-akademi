@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import javax.sound.sampled.SourceDataLine;
+
 
 public class akademi {
     static Scanner in;
@@ -152,9 +154,10 @@ public class akademi {
     }
     private static void showMatkul() {
         if (jumlahMatkul != 0){
-            System.out.println("Daftar matkul");
+            System.out.printf("No | %-30s|\n","Daftar Matkul");
+            System.out.println("------------------------------------");
             for(int i = 0; i<jumlahMatkul;i++){
-                System.out.print(matkul[i]+", ");
+                System.out.printf((i+1)+"  | %-30s|\n",matkul[i]);
             }
         }else{
             System.out.println("tidak ada mata kuliah dalam daftar");
@@ -198,9 +201,10 @@ public class akademi {
         if(jumlahMhs != 0){
             System.out.println("------Data Nama Mahasiswa------");
             System.out.println("===============================");
-            System.out.println("No\t"+"Nama\t\t"+"NIM");
+            System.out.printf("No | %-15s| NIM \n","Nama");
+            System.out.println("-------------------------------");
             for(int i = 0; i<jumlahMhs;i++){
-                System.out.println(i+1 + "\t" + nama[i] +"\t\t" + nim[i]);
+                System.out.printf(i+1 + "  | %-15s| %s\n",nama[i],nim[i]);
             }
         }else{
             System.out.println("tidak ada mahasiswa dalam daftar");
