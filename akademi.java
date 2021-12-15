@@ -1,8 +1,5 @@
 import java.util.Scanner;
 
-import javax.sound.sampled.SourceDataLine;
-
-
 public class akademi {
     static Scanner in;
     static String [] nama;
@@ -84,10 +81,11 @@ public class akademi {
                     }
                 }
             }
-            System.out.println("Daftar peringkat mahasiswa\t:");
-            System.out.println("Peringkat\tNama\tNIM\tNilai");
+            System.out.println("---------------Daftar Peringkat Mahasiswa---------------");
+            System.out.printf("%-10s| %-15s | %-15s | %-5s |\n","Peringkat","Nama","NIM","Nilai");
+            System.out.println("--------------------------------------------------------");
             for (int i = 0; i<jumlahMhs;i++){
-                System.out.println(i+1 + "\t\t "+ nama[i] + "\t" + nim[i] + "\t" + ipk[i]);
+                System.out.printf("%-10s| %-15s | %-15s | %-5.2f |\n",i+1, nama[i], nim[i], ipk[i]);
             }
         }else if (jumlahMatkul == 0){
             System.out.println("tidak ada matkul dalam daftar"
@@ -112,8 +110,11 @@ public class akademi {
                 nilaiPerMatkul [i] = avgTampungNilai;
                 tampungNilaiPerMatkul = 0;
             }
+            System.out.println("---------------Nilai Per Matkul---------------");
+            System.out.printf("%-30s | %-5s |\n","Mata Kuliah","Nilai");
+            System.out.println("----------------------------------------");
             for (int i = 0; i<jumlahMhs;i++){
-                System.out.println(matkul[i]+"\t\t="+nilaiPerMatkul[i]);
+                System.out.printf("%-30s | %-5.2f |\n",matkul[i],nilaiPerMatkul[i]);
             }
         }else if (jumlahMatkul == 0){
             System.out.println("tidak ada matkul dalam daftar"
@@ -128,6 +129,7 @@ public class akademi {
     static void cetakKHS() {
     }
     static void kelolaNilai() {
+        
     }
     static void showMenuMataKuliah() {
         int choice = 0;
