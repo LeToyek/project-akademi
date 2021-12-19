@@ -21,6 +21,7 @@ public class akademi {
             + "\n6. Peringkat Mahasiswa"
             + "\n7. Keluar");
             pilihan = in.nextInt();
+            in.nextLine();
             switch(pilihan){
                 case 1:
                 showMenuDataMahasiswa();
@@ -67,7 +68,7 @@ public class akademi {
                 tampungNilai = 0;
             }
             for (int i = 0; i<jumlahMhs;i++){
-                for (int j = 1; j< (jumlahMatkul-i); j++){
+                for (int j = 1; j< (jumlahMhs-i); j++){
                     if (ipk[j-1] < ipk[j]){
                         temp = ipk[j-1];
                         ipk[j-1] = ipk[j];
@@ -133,8 +134,9 @@ public class akademi {
       while(pilihan != 3){
         System.out.println("");
         System.out.print("1.CETAK KHS \n2.CETAK KHS NIM \n3.Exit ");
-        System.out.print("Masukkan Nomer : ");
+        System.out.print("\nMasukkan Nomor : ");
         pilihan = in.nextInt();
+        in.nextLine();
         switch(pilihan){
           case 1:
           tampilNilai();
@@ -147,7 +149,7 @@ public class akademi {
     }
     static void tampilNilai(){
       for(int i = 0; i < nama.length; i++){
-        System.out.printf("Nama : %s\nNIM : %d\n", nama[i], nim[i]);
+        System.out.printf("Nama : %s\nNIM : %s\n", nama[i], nim[i]);
         for(int j = 0; j < matkul.length; j++){
           System.out.printf("Nilai %s : %d\n", matkul[j], nilai[i][j]);
         }
@@ -156,11 +158,11 @@ public class akademi {
     }
     static void tampilNim(){
       System.out.print("Masukkan NIM : ");
-      int inputNIM = in.nextInt();
+      String inputNIM = in.nextLine();
       int a = 0;
       boolean status = false;
       for(int i = 0; i < nim.length; i++){
-        if(inputNIM == nim[i]){
+        if(inputNIM.equals(nim[i])){
           status = true;
           a = i;
         }
@@ -168,7 +170,7 @@ public class akademi {
 
       if(status == true){
         System.out.printf("Nama : %s\n", nama[a]);
-        System.out.printf("NIM : %d\n", nim[a]);
+        System.out.printf("NIM : %s\n", nim[a]);
         for(int i = 0; i < matkul.length; i++){
           System.out.printf("Nilai Matkul %s = %d\n", matkul[i], nilai[a][i]);
         }
@@ -179,12 +181,14 @@ public class akademi {
     static void kelolaNilai() {
       int pilihan = 0;
       in = new Scanner(System.in);
+      nilai = new int [jumlahMhs][jumlahMatkul];
 
       while(pilihan != 3){
         System.out.println("");
         System.out.print("1.Input \n2.Edit \n3.Exit ");
-        System.out.print("Masukkan Nomer : ");
+        System.out.print("\nMasukkan Nomor : ");
         pilihan = in.nextInt();
+        in.nextLine();
         switch(pilihan){
           case 1:
           inputNilai();
@@ -201,18 +205,20 @@ public class akademi {
         for(int n = 0; n < matkul.length; n++){
           System.out.printf("Masukkan nilai %s : ", matkul[n]);
           nilai[j][n] = in.nextInt();
+          in.nextLine();
         }
           System.out.println("");
         }
     }
     static void editNilai(){
-      int inputNim, inputMatkul, j=0;
+      int inputMatkul, j=0;
+      String inputNim;
       boolean status = false;
       System.out.print("Masukkan NIM : ");
-      inputNim = in.nextInt();
+      inputNim = in.nextLine();
 
       for(int i = 0; i < nim.length; i++){
-        if(inputNim == nim[i]){
+        if(inputNim.equals(nim[i])){
             status = true;
             j = i;
         }
@@ -225,10 +231,12 @@ public class akademi {
         }
         System.out.print("Pilih Matkul : ");
         inputMatkul = in.nextInt();
+        in.nextLine();
 
         int h = inputMatkul - 1;
         System.out.printf("Masukkan Nilai Matkul %s :", matkul[h]);
         nilai[j][h] = in.nextInt();
+        in.nextLine();
       } else {
         System.out.println("NIM Tidak Ditemukan");
       }
@@ -318,6 +326,8 @@ public class akademi {
         }
     }
     private static void inputDataMahasiswa() {
+        // boolean nimSama = false;
+        // boolean namaSama = false;
         System.out.print("Masukkan Jumlah Mahasiswa: ");
         jumlahMhs = in.nextInt();
         in.nextLine();
@@ -329,6 +339,7 @@ public class akademi {
             nama[i] = in.nextLine();
             System.out.print("  NIM\t:");
             nim[i] = in.nextLine();
+            //supposed to check apakah ada data yang sama atau tidak
         }
     }
 }
