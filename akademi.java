@@ -127,7 +127,53 @@ public class akademi {
         }
     }
     static void cetakKHS() {
+        int pilihan = 0;
+        in = new Scanner(System.in);
 
+        while(pilihan != 4){
+            System.out.println("");
+            System.out.print("1.Input \n2.Edit\n3.Exit\n");
+            System.out.print("Masukkan Nomer : ");
+            pilihan = in.nextInt();
+            switch(pilihan){
+            case 4:
+            tampilNilai();
+            break;
+            case 5:
+            tampilNim();
+            break;
+        }
+      }
+    }
+    static void tampilNilai(){
+        for(int i = 0; i < nama.length; i++){
+            System.out.printf("Nama : %s\nNIM : %d\n", nama[i], nim[i]);
+            for(int j = 0; j < matkul.length; j++){
+                System.out.printf("Nilai %s : %d\n", matkul[j], nilai[i][j]);
+            }
+            System.out.println("");
+        }
+    }
+    static void tampilNim(){
+        System.out.print("Masukkan NIM : ");
+        int inputNIM = in.nextInt();
+        int a = 0;
+        boolean status = false;
+        for(int i = 0; i < nim.length; i++){
+            if(inputNIM == nim[i]){
+                status = true;
+                a = i;
+            }
+        }
+        if(status == true){
+            System.out.printf("Nama : %s\n", nama[a]);
+            System.out.printf("NIM : %d\n", nim[a]);
+            for(int i = 0; i < matkul.length; i++){
+                System.out.printf("Nilai Matkul %s = %d\n", matkul[i], nilai[a][i]);
+            }
+        } else {
+            System.out.println("NIM Tidak Ditemukan");
+        }
     }
     static void kelolaNilai() {
       int pilihan = 0;
