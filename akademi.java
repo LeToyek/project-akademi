@@ -127,13 +127,64 @@ public class akademi {
         }
     }
     static void cetakKHS() {
+
     }
     static void kelolaNilai() {
-        nilai = new int[jumlahMhs][jumlahMatkul];
-        for(int i = 0; i< jumlahMhs;i++){
-            for(int j = 0; j< jumlahMatkul;j++){
-                nilai[i][j] = in.nextInt();
+      int pilihan = 0;
+      in = new Scanner(System.in);
+
+      while(pilihan != 4){
+        System.out.println("");
+        System.out.print("1.Input \n2.Edit\n3.Exit\n");
+        System.out.print("Masukkan Nomer : ");
+        pilihan = in.nextInt();
+        switch(pilihan){
+          case 1:
+          inputNilai();
+          break;
+          case 2:
+          editNilai();
+          break;
+        }
+      }
+    }
+    static void inputNilai(){
+        for(int j = 0; j < nama.length; j++){
+            System.out.printf("Nama : %s \nNIM : %s \n", nama[j], nim[j]);
+            for(int n = 0; n < matkul.length; n++){
+                System.out.printf("Masukkan nilai %s : ", matkul[n]);
+                nilai[j][n] = in.nextInt();
             }
+            System.out.println("");
+        }
+    }
+    static void editNilai(){
+    int inputNim, inputMatkul, j=0;
+    boolean status = false;
+    System.out.print("Masukkan NIM : ");
+    inputNim = in.nextInt();
+
+    for(int i = 0; i < nim.length; i++){
+      if(inputNim == nim[i]){
+        status = true;
+        j = i;
+      }
+    }
+
+    if(status == true){
+        System.out.println("DAFTAR MATKUL");
+        for(int i = 0; i < matkul.length; i++){
+            System.out.printf("%d. %s\n", i+1, matkul[i]);
+        }
+        System.out.print("Pilih Matkul : ");
+        inputMatkul = in.nextInt();
+
+        int h = inputMatkul - 1;
+        System.out.printf("Masukkan Nilai Matkul %s :", matkul[h]);
+        nilai[j][h] = in.nextInt();
+
+        }else {
+            System.out.println("NIM Tidak Ditemukan");
         }
     }
     static void showMenuMataKuliah() {
