@@ -101,9 +101,10 @@ public class akademi {
               System.out.println("-------------------------------------------");
               System.out.printf("%-3s| %-15s | %-10s | %-5s |\n","No ","Nama","NIM","Nilai");
               System.out.println("-------------------------------------------");
+              int count = 0;
               for (int i = 0; i < ipk.length; i++) {
                   if (ipk[i] < nilaiMinimal) {
-                    System.out.printf("%-3s| %-15s | %-10s | %-5.2f |\n",ipk.length-i, nama[i], nim[i], ipk[i]);
+                    System.out.printf("%-3s| %-15s | %-10s | %-5.2f |\n",count++, nama[i], nim[i], ipk[i]);
                   }
               }
               System.out.println("-------------------------------------------");
