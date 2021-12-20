@@ -9,6 +9,9 @@ public class akademi {
     static double [] nilaiPerMatkul ;
     static int jumlahMhs = 0,jumlahMatkul = 0;
     public static void main(String[] args) {
+      System.out.println("==============================");
+      System.out.printf("%24s\n", "Penilaian Akademik");
+      System.out.println("==============================");
         in = new Scanner(System.in);
         int pilihan = 0;
         while (pilihan != 7){
@@ -82,11 +85,28 @@ public class akademi {
                     }
                 }
             }
-            System.out.println("---------------Daftar Peringkat Mahasiswa---------------");
-            System.out.printf("%-10s| %-15s | %-15s | %-5s |\n","Peringkat","Nama","NIM","Nilai");
-            System.out.println("--------------------------------------------------------");
+            System.out.println("------------Daftar Peringkat Mahasiswa------------");
+            System.out.printf("%-10s| %-15s | %-10s | %-5s |\n","Peringkat","Nama","NIM","Nilai");
+            System.out.println("--------------------------------------------------");
             for (int i = 0; i<jumlahMhs;i++){
-                System.out.printf("%-10s| %-15s | %-15s | %-5.2f |\n",i+1, nama[i], nim[i], ipk[i]);
+                System.out.printf("%-10s| %-15s | %-10s | %-5.2f |\n",i+1, nama[i], nim[i], ipk[i]);
+            }
+            System.out.println("--------------------------------------------------");
+            System.out.println("Apakah anda ingin menampilkan mahasiswa yang tidak lulus ? (y/n)");
+            String lulus = in.nextLine();
+            if (lulus.equalsIgnoreCase("y")) {
+              System.out.print("Masukkan nilai minimal untuk lulus\nNilai minimal : ");
+              double nilaiMinimal = in.nextDouble();
+              System.out.println("Berikut adalah daftar mahasiswa yang tidak lulus");
+              System.out.println("-------------------------------------------");
+              System.out.printf("%-3s| %-15s | %-10s | %-5s |\n","No ","Nama","NIM","Nilai");
+              System.out.println("-------------------------------------------");
+              for (int i = 0; i < ipk.length; i++) {
+                  if (ipk[i] < nilaiMinimal) {
+                    System.out.printf("%-3s| %-15s | %-10s | %-5.2f |\n",ipk.length-i, nama[i], nim[i], ipk[i]);
+                  }
+              }
+              System.out.println("-------------------------------------------");
             }
         }else if (jumlahMatkul == 0){
             System.out.println("tidak ada matkul dalam daftar"
@@ -111,12 +131,13 @@ public class akademi {
                 nilaiPerMatkul [i] = avgTampungNilai;
                 tampungNilaiPerMatkul = 0;
             }
-            System.out.println("---------------Nilai Per Matkul---------------");
+            System.out.println("------------Nilai Per Matkul------------");
             System.out.printf("%-30s | %-5s |\n","Mata Kuliah","Nilai");
             System.out.println("----------------------------------------");
             for (int i = 0; i<jumlahMatkul;i++){
                 System.out.printf("%-30s | %-5.2f |\n",matkul[i],nilaiPerMatkul[i]);
             }
+            System.out.println("----------------------------------------");
         }else if (jumlahMatkul == 0){
             System.out.println("tidak ada matkul dalam daftar"
                     +"\nharap input matkul terlebih dahulu");
@@ -128,12 +149,14 @@ public class akademi {
         }
     }
     static void cetakKHS() {
-      int pilihan = 0;
+      if(nilai != null && jumlahMatkul != 0 && jumlahMhs != 0 ){
+        int pilihan = 0;
       in = new Scanner(System.in);
+      
 
       while(pilihan != 3){
         System.out.println("");
-        System.out.print("1.CETAK KHS \n2.CETAK KHS NIM \n3.Exit ");
+        System.out.print("1.CETAK KHS \n2.CETAK KHS NIM \n3.Kembali ");
         System.out.print("\nMasukkan Nomor : ");
         pilihan = in.nextInt();
         in.nextLine();
@@ -146,15 +169,34 @@ public class akademi {
           break;
         }
       }
+      }else if (jumlahMatkul == 0){
+        System.out.println("tidak ada matkul dalam daftar"
+        +"\nharap input matkul terlebih dahulu");
+      }else if (jumlahMhs == 0) {
+        System.out.println("tidak ada mahasiswa dalam daftar"
+                + "\nharap input mahasiswa terlebih dahulu");
+      }else{
+        System.out.println("nilai belum diinput"+ "\nharap input nilai terlebih dahulu");
+      }
     }
     static void tampilNilai(){
+      additionalLine();
+      System.out.printf("%-3s| %-15s | %-10s | ","No","Nama","NIM");
+      for (int i = 0; i < matkul.length; i++) {
+        System.out.printf("%.3s | ", matkul[i]);
+      }
+      System.out.println("");
+      additionalLine();
+      
+      
       for(int i = 0; i < nama.length; i++){
-        System.out.printf("Nama : %s\nNIM : %s\n", nama[i], nim[i]);
+        System.out.printf("%-3d| %-15s | %-10s | ",(i+1), nama[i], nim[i]);
         for(int j = 0; j < matkul.length; j++){
-          System.out.printf("Nilai %s : %d\n", matkul[j], nilai[i][j]);
+          System.out.printf("%-3d | ", nilai[i][j]);
         }
         System.out.println("");
       }
+      additionalLine();
     }
     static void tampilNim(){
       System.out.print("Masukkan NIM : ");
@@ -179,25 +221,40 @@ public class akademi {
       }
     }
     static void kelolaNilai() {
-      int pilihan = 0;
-      in = new Scanner(System.in);
-      nilai = new int [jumlahMhs][jumlahMatkul];
-
-      while(pilihan != 3){
-        System.out.println("");
-        System.out.print("1.Input \n2.Edit \n3.Exit ");
-        System.out.print("\nMasukkan Nomor : ");
-        pilihan = in.nextInt();
-        in.nextLine();
-        switch(pilihan){
-          case 1:
-          inputNilai();
-          break;
-          case 2:
-          editNilai();
-          break;
+      if(jumlahMhs != 0 && jumlahMhs != 0){
+        if(nilai == null){
+          nilai = new int [jumlahMhs][jumlahMatkul];
+          kelolaNilai();
         }
+        else{
+          int pilihan = 0;
+          in = new Scanner(System.in);
+          while(pilihan != 3){
+            System.out.println("");
+            System.out.print("1.Input Nilai \n2.Edit Nilai \n3.Kembali ");
+            System.out.print("\nMasukkan Nomor : ");
+            pilihan = in.nextInt();
+            in.nextLine();
+            switch(pilihan){
+              case 1:
+              inputNilai();
+              break;
+              case 2:
+              editNilai();
+              break;
+            }
+          } 
+        }
+
+        
+      }else if (jumlahMatkul == 0){
+        System.out.println("tidak ada matkul dalam daftar"
+        +"\nharap input matkul terlebih dahulu");
+      }else{
+        System.out.println("tidak ada mahasiswa dalam daftar"
+                + "\nharap input mahasiswa terlebih dahulu");
       }
+      
     }
     static void inputNilai(){
       for(int j = 0; j < nama.length; j++){
@@ -231,7 +288,6 @@ public class akademi {
         }
         System.out.print("Pilih Matkul : ");
         inputMatkul = in.nextInt();
-        in.nextLine();
 
         int h = inputMatkul - 1;
         System.out.printf("Masukkan Nilai Matkul %s :", matkul[h]);
@@ -341,5 +397,12 @@ public class akademi {
             nim[i] = in.nextLine();
             //supposed to check apakah ada data yang sama atau tidak
         }
+    }
+    static void additionalLine(){
+      System.out.print("-----------------------------------");
+      for (int i = 0; i < matkul.length; i++) {
+        System.out.print("------");
+      }
+      System.out.println("");
     }
 }
