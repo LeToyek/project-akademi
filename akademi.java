@@ -101,7 +101,7 @@ public class akademi {
               System.out.println("-------------------------------------------");
               System.out.printf("%-3s| %-15s | %-10s | %-5s |\n","No ","Nama","NIM","Nilai");
               System.out.println("-------------------------------------------");
-              int count = 0;
+              int count = 1;
               for (int i = 0; i < ipk.length; i++) {
                   if (ipk[i] < nilaiMinimal) {
                     System.out.printf("%-3s| %-15s | %-10s | %-5.2f |\n",count++, nama[i], nim[i], ipk[i]);
@@ -222,7 +222,7 @@ public class akademi {
       }
     }
     static void kelolaNilai() {
-      if(jumlahMhs != 0 && jumlahMhs != 0){
+      if(jumlahMhs != 0 && jumlahMatkul != 0){
         if(nilai == null){
           nilai = new int [jumlahMhs][jumlahMatkul];
           kelolaNilai();
